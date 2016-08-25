@@ -104,3 +104,12 @@ div ul {
 	position:relative;
 	top:1px;
 }
+
+#map {
+	height: 250px;
+	width: 250px;
+}
+
+#address {
+	width: 200px;
+}
