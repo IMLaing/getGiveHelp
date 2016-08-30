@@ -11,13 +11,15 @@
 	
 </head>
 <body>
-<input type="text" id="address">
-<input type="button" value="Encode" onclick="codeAddress()">
-<div id="map"></div>
 	<div class="flexible ggHelpBoxes">	
 		<div class="getHelp">
 		<h1>Get Help</h1>
 			<div class="flexContainer">
+			<div class="gMap">
+					<h3>Meetings Near By</h3>
+					<div id="map"></div>
+				</div>
+			<div>
 				<ul>
 					<li><button class="myButton"><pre>
 Boston, Massachusetts
@@ -52,54 +54,52 @@ Martha's Vineyard Answering Service
 24 Hr Hotline: (508)627-7084
 Site: www.aaonmv.org</pre></button></li>
 				</ul>
-				<div class="gMap">
-					<h3>Meetings Near By</h3>
-					<iframe src="https://www.google.com/maps/d/embed?mid=1PliwaBIQxbqt9dgRlY2P-y1qLRI&hl=en" width="250" height="350"></iframe>	
 				</div>
+				
 			</div>
 		</div>
 		<div class="giveHelp">	
 		<h1>Give Help</h1>
 		<div class="flexContainer">
-			<ul>
-					<li><button class="myButton"><pre>
+			<div class="gMap">
+				<h3>Volunteering Locations Near by</h3>
+				<div id="map2"></div>
+			</div>
+				<div>
+					<ul>
+						<li><button class="myButton"><pre>
 Natick Days
 Natick Common
-Natick, MA01760</pre></li>
-					<li><button class="myButton"><pre>
+Natick, MA01760</pre>	</li>
+						<li><button class="myButton"><pre>
 Visitor Education Volunteer
 New England Aquarium
 Central Wharf
 Boston, MA02110</pre></button></li>
-					<li><button class="myButton"><pre>
+						<li><button class="myButton"><pre>
 Marine Mammal Volunteer (Weekday Positions)
 Central Wharf
 Boston, MA02110</pre></li>
-					<li><button class="myButton"><pre>
+						<li><button class="myButton"><pre>
 Marine Mammal Dive Volunteer (Weekday and Weekend)
 New England Aquarium
 Central Wharf
 Boston, MA02110</pre></button></li>
-					<li><button class="myButton"><pre>
+						<li><button class="myButton"><pre>
 Colony Feeders
 various
 Waltham, MA0245</pre></button></li>
 
-					<li><button class="myButton"><pre>
+						<li><button class="myButton"><pre>
 Program Developer
 323 High St
 Walpole, MA02081</pre></button></li>
-				</ul>
-				<div class="gMap">
-					<h3>Volunteering Locations Near by</h3>
-					<iframe src="https://www.google.com/maps/d/embed?mid=1PliwaBIQxbqt9dgRlY2P-y1qLRI&hl=en" width="250" height="350"></iframe>	
-				</div>
-		</div>
-		</div>
-		<div class="guardian">	
-			<h1>Become a Guardian!</h1>
+					</ul>
 		</div>
 	</div>
+	</div>	
+		<div class="guardian">	
+			<h1>Become a Guardian!</h1>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZSztzrJQoCzboyW0zj-EwQqfYE7NvjfE&callback=initMap"
     async defer></script>
 </body>
