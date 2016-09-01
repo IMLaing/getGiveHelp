@@ -12,8 +12,9 @@ function geoCheck(){
       console.log('no geolocation is available');
     }
 }
-
 geoCheck();
+
+
 function Deg2Rad( deg ) {
        return deg * Math.PI / 180;
     }
@@ -37,6 +38,7 @@ function Haversine( lat1, lon1, lat2, lon2 )
 // var distance = google.maps.geometry.spherical.computeDistanceBetween(AAMarker, );
 
 function initMap() {
+
    geocoder = new google.maps.Geocoder();
    var myLatLng = {lat: 42.36, lng: -71.06};
    var mapOptions = {
@@ -45,19 +47,27 @@ function initMap() {
     disableDefaultUI: true
   };
   
-   $.getJSON('./geocoded.json', function(data){
-    console.log(data);
-
-    data.forEach(function(element, index, array){
-      var dist = Haversine(element.lat, element.lng, myLatLng.lat, myLatLng.lng);
-        console.log(dist);
-      });
-    });
-  
   AAMap = new google.maps.Map(document.getElementById('map'), mapOptions);
   volunteerMap = new google.maps.Map(document.getElementById('map2'), mapOptions);
 
-  $.getJSON('./geocoded.json', function(data){
+   $.getJSON('./geocoded.json', function(data){
+      var closestLocations = _(data).sortBy(function(e){
+        return Haversine(e.lat, e.lng, myLatLng.lat, myLatLng.lng);
+        });
+      closestLocations.slice(0,5).forEach(function(element, index, array){
+          var AAMarker = new google.maps.Marker({
+            map: AAMap,
+            position: {lat: element.lat, lng:element.lng}
+         });
+          var volunteerMarker = new google.maps.Marker({
+            map: volunteerMap,
+            position: {lat: element.lat, lng:element.lng}
+         });
+      });
+    });
+}
+
+ /*$.getJSON('./geocoded.json', function(data){
     data.forEach(function(element, index, array){
     var AAMarker = new google.maps.Marker({
         map: AAMap,
@@ -68,10 +78,7 @@ function initMap() {
         position: {lat: element.lat, lng:element.lng}
       });
     });
-  });
-}
-
-
+  });*/
 /*=function codeAddress(){
     var address = document.getElementById('address').value;
     geocoder.geocode( {'address':address}, function(results, status) {
