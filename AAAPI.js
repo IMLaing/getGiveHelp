@@ -72,7 +72,6 @@ function initMap() {
          });    
     console.log('marker added at AAMap and volunteerMap');
          var cleanVenue = element.venue.replace(/[^\w\s]/gi, '');
-
          $('#getHelpLocMenu').append(
           '<li><a href="https://www.google.com/#q='+ cleanVenue +' AA" ><button class="getHelpLocButton">'+ element.venue +'<br>'+ element.city +'</button></a></li>'
           );
