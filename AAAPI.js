@@ -1,18 +1,19 @@
-var geocoder, AAMap, volunteerMap, closestPosition;
+var geocoder, AAMap, volunteerMap;
+
 
 function geoCheck(){
     if ("geolocation" in navigator) {
           navigator.geolocation.getCurrentPosition(function(position) {
                AAMap.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});
                volunteerMap.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});
-               closestPosition = {lat:position.coords.latitude, lng:position.coords.longitude};
-               console.log(closestPosition);
-                }); 
+               }); 
         } else {
       console.log('no geolocation is available');
     }
+    closestPosition = closestPosition;
 }
 geoCheck();
+
 
 
 function Deg2Rad( deg ) {
@@ -38,15 +39,20 @@ function Haversine( lat1, lon1, lat2, lon2 )
 // var distance = google.maps.geometry.spherical.computeDistanceBetween(AAMarker, );
 
 function initMap() {
-
    geocoder = new google.maps.Geocoder();
-   var myLatLng = {lat: 42.36, lng: -71.06};
+   var myLatLng = {lat: 37.77, lng: -71.06};
    var mapOptions = {
     zoom: 8,
     center: myLatLng,
     disableDefaultUI: true
-  };
+    };
   
+    if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            myLatLng = {lat:position.coords.latitude, lng:position.coords.longitude};
+          });
+    }
+
   AAMap = new google.maps.Map(document.getElementById('map'), mapOptions);
   volunteerMap = new google.maps.Map(document.getElementById('map2'), mapOptions);
 
