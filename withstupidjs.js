@@ -59,8 +59,6 @@ function initMap() {
       var closestLocations = _(data).sortBy(function(e){
         return Haversine(e.lat, e.lng, myLatLng.lat, myLatLng.lng);
         });
-        $('#getHelpLocButton').empty();
-    console.log('empyt #getHelpLocButton'); 
       closestLocations.slice(0,5).forEach(function(element, index, array){
           var AAMarker = new google.maps.Marker({
             map: AAMap,
@@ -69,17 +67,17 @@ function initMap() {
           var volunteerMarker = new google.maps.Marker({
             map: volunteerMap,
             position: {lat: element.lat, lng:element.lng}
-         });    
-    console.log('marker added at AAMap and volunteerMap');
-         var cleanVenue = element.venue.replace(/[^\w\s]/gi, '');
-
-         $('#getHelpLocMenu').append(
-          '<li><a href="https://www.google.com/#q='+ cleanVenue +' AA" ><button class="getHelpLocButton">'+ element.venue +'<br>'+ element.city +'</button></a></li>'
+         });
+          var para = document.createElement("<li>");
+          var node = document.createTextNode("This is new.");
+          para.appendChild(node);
+          var exlement = document.getElementById("div1");
+          element.appendChild(para);
+          document.getElementById('getHelpLocButton').innerHTML = '';
+          document.getElementById('getHelpLocButton').append(
+          '<button class="myButton">'+ element.venue +' '+ element.city +'</li>'
           );
-    console.log('append html');
       });
-      $('.getHelpLocButton').addClass('myButton');
-    console.log('added class myButton after created DOM element');  
     });
 }
 
