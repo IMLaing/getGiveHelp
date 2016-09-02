@@ -36,6 +36,12 @@ function Haversine( lat1, lon1, lat2, lon2 )
         return d;
     }
 // var distance = google.maps.geometry.spherical.computeDistanceBetween(AAMarker, );
+var searchURL = function(venue){
+  var encodedVenue = encodeURIComponent(venue + ' AA');
+  // encodedURIComponent encodes a string to be URL ready
+  //var cleanVenue = venue.replace(/[^\w\s]/gi, '');
+  return "https://www.google.com/#q=" + encodedVenue;
+};
 
 function initMap() {
    geocoder = new google.maps.Geocoder();
@@ -53,27 +59,26 @@ function initMap() {
     }
 
   AAMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-  volunteerMap = new google.maps.Map(document.getElementById('map2'), mapOptions);
+  //volunteerMap = new google.maps.Map(document.getElementById('map2'), mapOptions);
 
    $.getJSON('./geocoded.json', function(data){
       var closestLocations = _(data).sortBy(function(e){
         return Haversine(e.lat, e.lng, myLatLng.lat, myLatLng.lng);
         });
         $('#getHelpLocButton').empty();
-    console.log('empyt #getHelpLocButton'); 
+    console.log('empty #getHelpLocButton'); 
       closestLocations.slice(0,5).forEach(function(element, index, array){
           var AAMarker = new google.maps.Marker({
             map: AAMap,
             position: {lat: element.lat, lng:element.lng}
          });
-          var volunteerMarker = new google.maps.Marker({
+          /*var volunteerMarker = new google.maps.Marker({
             map: volunteerMap,
             position: {lat: element.lat, lng:element.lng}
-         });    
+         });*/    
     console.log('marker added at AAMap and volunteerMap');
-         var cleanVenue = element.venue.replace(/[^\w\s]/gi, '');
          $('#getHelpLocMenu').append(
-          '<li><a href="https://www.google.com/#q='+ cleanVenue +' AA" ><button class="getHelpLocButton">'+ element.venue +'<br>'+ element.city +'</button></a></li>'
+          '<li><a href="'+ searchURL(element.venue) +'" ><button class="getHelpLocButton">'+ element.venue +'<br>'+ element.city +'</button></a></li>'
           );
     console.log('append html');
       });
@@ -81,6 +86,7 @@ function initMap() {
     console.log('added class myButton after created DOM element');  
     });
 }
+
 
  /*$.getJSON('./geocoded.json', function(data){
     data.forEach(function(element, index, array){

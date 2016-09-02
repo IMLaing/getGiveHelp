@@ -1,9 +1,7 @@
 @import 'https://fonts.googleapis.com/css?family=Jaldi';
-
 *{
 	box-sizing: border-box;
 	font-family: 'Jaldi', sans-serif;
-
 }
 h1 {
 	text-align: center;
@@ -22,6 +20,10 @@ body {
 	align-items: stretch;
 	align-content: stretch;
 	padding: 10px;
+	background: url('bkrnd.jpg');
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 .flexContainer{
 	display: flex;
@@ -32,42 +34,41 @@ body {
 	align-content: stretch;
 	padding: 2px;
 }
-
 div ul {
 	list-style: none;
 }
 .flexible div{
 	padding:15px;
 }
+.titleHeading {
+	text-align: center;
+	font-size: 2em;
+}
 .getHelp {
-	background:#528972;
-	width: 47%;
+	width: 100%;
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 1;
 }
-.giveHelp {
+/*.giveHelp {
 	background:#286C77;
 	width: 47%;
     flex-grow: 1;
     flex-shrink: 0;
     flex-basis: 1;
-}
+}*/
 .guardian {
 	text-align: center;
 	color: whitesmoke;
-	background:#03031B;
 	height: 250px;
     flex-grow: 1;
     flex-shrink: 0;
 	width: 98%;
     height: 20vh;
 }
-
 .gMap {
 	align-items: flex-end;
 }
-
 .myButton {
 	-moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
 	-webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
@@ -108,13 +109,8 @@ div ul {
 }
 
 #map {
-	height: 250px;
-	width: 250px;
-}
-
-#map2 {
-	height: 250px;
-	width: 250px;
+	height: 500px;
+	width: 500px;
 }
 
 #address {
